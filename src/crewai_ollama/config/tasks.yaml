@@ -1,0 +1,18 @@
+extract_data:
+  description: >
+    The Excel file at '{file_path}' has been parsed using a tool. 
+    Based on the parsed result, list all column names and two sample values per column in a readable format.
+  expected_output: >
+    Return a markdown table showing each column header and two sample values.
+
+map_schema:
+  description: >
+    Given this extracted data:
+    {extract_data.output}
+    And the schema definition:
+    {schema_definition}
+    Generate a markdown table that renames columns from the original data to match the schema, and shows up to 2 rows as example.
+  expected_output: >
+    A markdown table with schema-aligned headers and corresponding sample values.
+  agent: schema_mapping_specialist
+  context: [extract_data]
